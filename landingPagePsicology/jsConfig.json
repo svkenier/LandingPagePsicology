@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Define la base para las rutas
+    "paths": {
+      "@/*": ["./src/*"] // Mapea el alias '@' a la carpeta 'src'
+    }
+  },
+  "exclude": ["node_modules"] // Excluye la carpeta node_modules
+}
