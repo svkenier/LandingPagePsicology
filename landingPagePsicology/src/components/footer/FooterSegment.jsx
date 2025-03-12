@@ -1,8 +1,9 @@
-import { Box, Stack} from "@mui/material"
+import { Box} from "@mui/material"
 import { colorsPalette } from "@/styles/colorsPalette"
 import { MottoSectionFooter } from "./MottoSectionFooter"
 import { QuickLinksSectionFooter } from "./QuickLinksSectionFooter"
 import { LegalLinksSectionFooter } from "./LegalLinksSectionFooter"
+import { ConnectSectionFooter } from "./ConnectSectionFooter"
 
 
 export const FooterSegment = () => {
@@ -13,7 +14,7 @@ export const FooterSegment = () => {
         <MottoSectionFooter/>
         <QuickLinksSectionFooter/>
         <LegalLinksSectionFooter/>
-        <Stack></Stack>
+        <ConnectSectionFooter/>
     </Box>
   )
 }

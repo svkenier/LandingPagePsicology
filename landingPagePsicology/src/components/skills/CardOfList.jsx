@@ -43,7 +43,7 @@ export const CardOfList = ({ skill }) => {
             <Box marginRight={1}>{icon}</Box>
             
             {subTitle ? (
-              <Typography variant="body1" fontSize="1rem" width="100%" margin="0.2rem" color={textSecondary}>
+              <Typography variant="body1" sx={{fontSize:"1rem",width:"100%",margin:"0.2rem"}} color={textSecondary}>
                 {subTitle}{" "}
                 <Typography variant="span" fontSize="1rem" color={text}>
                   {info}

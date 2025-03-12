@@ -10,6 +10,7 @@ import { FormSegment } from "./components/form/FormSegment";
 import PropTypes from "prop-types";
 import { FooterSegment } from "./components/footer/footerSegment";
 
+
 function App() {
   const { handleActiveMenu, activeMenu } = useHandleMenu();
 
@@ -27,6 +28,7 @@ function App() {
       <ServicesSegment />
       <FormSegment/>
       <FooterSegment/>
+      
     </Box>
   );
 }

@@ -10,10 +10,13 @@ import PsychologyIcon from "@mui/icons-material/Psychology";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SpaIcon from "@mui/icons-material/Spa";
 import SupportIcon from "@mui/icons-material/Support";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 //// import color palette //////
 import { colorsPalette } from "@/styles/colorsPalette";
 export const contentLists = () => {
-  const { details } = colorsPalette();
+  const { details , } = colorsPalette();
 
   ////////// Abaut Us lists //////////////////////////
 
@@ -55,7 +58,7 @@ export const contentLists = () => {
         {
           icon: <CheckIcon sx={{ color: "#0fbb4d", fontSize: "1.5rem" }} />,
           subTitle:
-            " Miembro activo de la Federación de Psicólogo de Venezuela",
+            "Miembro activo de la Federación de Psicólogo de Venezuela",
           info: "(Nº Registro FPV: 16.605).",
         },
       ],
@@ -201,6 +204,24 @@ export const contentLists = () => {
     "Aviso legal"
   ]
 
+  const listSocialMedia =[
+    {
+      icon: <WhatsAppIcon/>,
+      title:"WhatsApp",
+      link: "Agendar consulta",
+    },
+    {
+      icon: <InstagramIcon/>,
+      title:"Instagram",
+      link: "@protegetupsique",
+    },
+    {
+      icon: <MusicNoteIcon/>,
+      title:"TikTok",
+      link: "@protegetupsique",
+    }
+  ]
+
   return {
     sesionContent,
     listMethology,
@@ -210,6 +231,7 @@ export const contentLists = () => {
     listsCards,
     listConditionsForm,
     listQuickLinks,
-    listLegalLinks
+    listLegalLinks,
+    listSocialMedia
   };
 };
