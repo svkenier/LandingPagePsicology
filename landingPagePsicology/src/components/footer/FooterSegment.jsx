@@ -1,20 +1,16 @@
-import { Box} from "@mui/material"
+import { Box, Typography} from "@mui/material"
 import { colorsPalette } from "@/styles/colorsPalette"
-import { MottoSectionFooter } from "./MottoSectionFooter"
-import { QuickLinksSectionFooter } from "./QuickLinksSectionFooter"
-import { LegalLinksSectionFooter } from "./LegalLinksSectionFooter"
-import { ConnectSectionFooter } from "./ConnectSectionFooter"
+import { ContactDropDawn } from "./ContactDropDawn"
 
 
 export const FooterSegment = () => {
-    const {primary,} = colorsPalette()
+    const {primary,textTertiary} = colorsPalette()
   return (
-    <Box sx={{backgroundColor: primary, display:"flex"}}>
+    <Box sx={{backgroundColor: primary, display:"flex", justifyContent:"center",position:"relative"}}>
         
-        <MottoSectionFooter/>
-        <QuickLinksSectionFooter/>
-        <LegalLinksSectionFooter/>
-        <ConnectSectionFooter/>
+    <Typography variant="body1" color={textTertiary}> terminos y condiciones </Typography>
+    
+      <ContactDropDawn/>
     </Box>
   )
 }
