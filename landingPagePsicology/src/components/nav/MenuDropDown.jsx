@@ -1,18 +1,19 @@
 import { Stack, Typography } from "@mui/material";
 import { colorsPalette } from "../../styles/colorsPalette";
-import PropTypes from "prop-types";
 import { contentLists } from "@/assets/contentManagement/contentLists";
-
+import { useHandleScroll } from "@/hooks/useHandleScroll";
+import PropTypes from "prop-types";
 
 export const MenuDropDawn = ({ handleActiveMenu }) => {
   const { textTertiary, primary, secondary, textSecondary } = colorsPalette();
 
-  //Pregunatar porque es necesario establecer una props como requerida
+  const { handleScroll } = useHandleScroll();
+
+  const { listQuickLinks } = contentLists();
+
   MenuDropDawn.propTypes = {
     handleActiveMenu: PropTypes.func.isRequired,
   };
-
-  const { listQuickLinks  } = contentLists()
 
   return (
     <Stack
@@ -25,12 +26,14 @@ export const MenuDropDawn = ({ handleActiveMenu }) => {
         justifySelf: "flex-end",
       }}
     >
-      {
-        listQuickLinks?.map((linkMenu, index) => (
-          <Typography
+      {listQuickLinks?.map((linkMenu, index) => (
+        <Typography
           component="a"
           key={index}
-          onClick={handleActiveMenu}
+          onClick={(e) => {
+            handleScroll(e, linkMenu);
+            handleActiveMenu(false);
+          }}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -45,11 +48,9 @@ export const MenuDropDawn = ({ handleActiveMenu }) => {
           variant="body1"
           color={textTertiary}
         >
-        {linkMenu}
+          {linkMenu}
         </Typography>
-        ))
-      }
-
+      ))}
     </Stack>
   );
 };

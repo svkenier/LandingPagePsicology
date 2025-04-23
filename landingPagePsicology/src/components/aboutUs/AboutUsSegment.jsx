@@ -9,7 +9,7 @@ export const AboutUsSegment = () => {
     <Box
       bgcolor={secondary}
       component="section"
-      id="aboutUsSection"
+      id="Sobre el psicologo"
       sx={{
         width: "100%",
         height: "100vh",

@@ -6,7 +6,7 @@ import { ConditionsForm } from "./ConditionsForm"
 
 export const FormSegment = () => {
   return (
-    <Stack component="section" id="formSection" sx={{padding:"0.4rem 1rem ", width:"100%", height:"100vh", marginTop:"2.5rem"}}>
+    <Stack component="section" id="Contacto" sx={{padding:"0.4rem 1rem ", width:"100%", height:"100vh", marginTop:"2.5rem"}}>
     <InformationForm/>
     <Box sx={{width:"100%", display:"flex", }} >
     <AppointmentForm />

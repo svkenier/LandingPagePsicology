@@ -1,7 +1,11 @@
 import { Stack, Typography, Button, Box } from "@mui/material";
 import { colorsPalette } from "@/styles/colorsPalette";
+import { useHandleScroll } from "@/hooks/useHandleScroll";
 
 export const InformationHeader = () => {
+
+const {handleScroll} = useHandleScroll()
+
   const { text, textSecondary, primary } = colorsPalette();
   return (
     <Stack
@@ -48,6 +52,7 @@ export const InformationHeader = () => {
           variant="contained"
           size="large"
           sx={{ bgcolor: `${primary}`, width: "50%", height: "3.5rem" }}
+          onClick={(e)=>{ handleScroll(e, "Contacto")}}
         >
           Agendar sesión inicial
         </Button>

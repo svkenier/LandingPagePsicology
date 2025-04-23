@@ -14,7 +14,7 @@ export const NavSegment = ({ handleActiveMenu, activeMenu }) => {
     <>
       <Box
         component="section"
-        id="navSection"
+        id="Inicio"
         sx={{
           width: "100%",
           height: "12vh",

@@ -6,7 +6,7 @@ export const ServicesSegment = () => {
   return (
     <Box
       component="section"
-      id="myServicesSection"
+      id="Servicios"
       sx={{ width: "100%", display: "flex", height: "100vh" }}
     >
       <ShowServices />

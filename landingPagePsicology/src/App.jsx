@@ -5,7 +5,7 @@ import { HeaderSegment } from "./components/header/HeaderSegment";
 import { useHandleMenu } from "./hooks/useHandleMenu";
 import { AboutUsSegment } from "./components/aboutUs/AboutUsSegment";
 import { SkillsSegment } from "./components/skills/SkillsSegment";
-import { ServicesSegment } from "./components/myServices/servicesSegment";
+import { ServicesSegment } from "./components/myServices/ServicesSegment";
 import { FormSegment } from "./components/form/FormSegment";
 import PropTypes from "prop-types";
 import { FooterSegment } from "./components/footer/footerSegment";

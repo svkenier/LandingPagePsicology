@@ -11,11 +11,13 @@ import {
   Select,
   FormControl,
   InputLabel,
+  
   Stack,
 } from "@mui/material";
 import { colorsPalette } from "@/styles/colorsPalette";
 import { CompactField } from "./CompactField";
 import { CompactDateField } from "./CompactDateField";
+import { useDataForm } from "@/hooks/useDataForm";
 
 const validationSchema = Yup.object({
   // Mantener el esquema de validación original
@@ -46,17 +48,7 @@ export const AppointmentForm = () => {
 
   // Mantener initialValues y handleSubmit originales
 
-  const initialValues = {
-    name: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    date: "",
-    time: "",
-    reason: "",
-    consultationType: "",
-    terms: false,
-  };
+ const {formValues} = useDataForm()
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log(values);
@@ -66,7 +58,7 @@ export const AppointmentForm = () => {
   return (
     <Stack sx={{ border: `solid ${details} 0.1em `, width:"40%", height: "100%", padding:"1rem",borderRadius:"0.2rem"}}>
       <Formik
-        initialValues={initialValues}
+        initialValues={formValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -135,7 +127,7 @@ export const AppointmentForm = () => {
                     value={values.consultationType}
                     onChange={handleChange}
                   >
-                    <MenuItem value="Presencial" sx={{ fontSize: "0.875rem" }}>
+                    <MenuItem  value="Presencial" sx={{ fontSize: "0.875rem" }}>
                       Presencial
                     </MenuItem>
                     <MenuItem value="Online" sx={{ fontSize: "0.875rem" }}>
