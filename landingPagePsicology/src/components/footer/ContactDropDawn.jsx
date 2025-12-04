@@ -13,7 +13,7 @@ export const ContactDropDawn = () => {
     {
       icon: <WhatsAppIcon />,
       label: "WhatsApp",
-      href: "https://wa.me/584121021512?text=me%20gustaria%20solicitar%20informacion%20de%20su%20servicios",
+      href: "https://wa.me/584127713052?text=me%20gustaria%20solicitar%20informacion%20de%20su%20servicios",
       color: "#25d366",
     },
     {

@@ -269,7 +269,7 @@ Contacto: contacto@protegetupsique.com`
       icon: <WhatsAppIcon/>,
       title:"WhatsApp",
       link: "Agendar consulta",
-      href: "https://wa.me/584121021512?text=me%20gustaria%20solicitar%20informacion%20de%20su%20servicios",
+      href: "https://wa.me/584127713052?text=me%20gustaria%20solicitar%20informacion%20de%20su%20servicios",
     },
     {
       icon: <InstagramIcon/>,
