@@ -269,16 +269,19 @@ Contacto: contacto@protegetupsique.com`
       icon: <WhatsAppIcon/>,
       title:"WhatsApp",
       link: "Agendar consulta",
+      href: "https://wa.me/message/MYLIB34HBHBXF1",
     },
     {
       icon: <InstagramIcon/>,
       title:"Instagram",
       link: "@protegetupsique",
+      href: "https://www.instagram.com/protegetupsique/",
     },
     {
       icon: <MusicNoteIcon/>,
       title:"TikTok",
       link: "@protegetupsique",
+      href: "https://www.tiktok.com/@protegetupsique?_r=1&_t=ZM-91x1AhtH69z",
     }
   ]
 

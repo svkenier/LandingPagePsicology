@@ -13,19 +13,19 @@ export const ContactDropDawn = () => {
     {
       icon: <WhatsAppIcon />,
       label: "WhatsApp",
-      href: "https://wa.me/584121021512?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20%F0%9F%98%84",
+      href: "https://wa.me/message/MYLIB34HBHBXF1",
       color: "#25d366",
     },
     {
       icon: <InstagramIcon />,
       label: "Instagram",
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/protegetupsique/",
       color: "linear-gradient(45deg, #833AB4 0%, #C13584 30%, #E1306C 50%, #FD1D1D 70%, #F56040 80%, #FCAF45 100%)",
     },
     {
       icon: <TikTokIcon />,
       label: "TikTok",
-      href: "https://www.tiktok.com/",
+      href: "https://www.tiktok.com/@protegetupsique?_r=1&_t=ZM-91x1AhtH69z",
       color: "#000",
     },
   ];

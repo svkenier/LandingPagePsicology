@@ -121,13 +121,21 @@ export const FooterSegment = () => {
               Síguenos
             </Typography>
             <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-              {listSocialMedia?.map(({ icon, title, link }, index) => (
-                <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Box sx={{ opacity: 0.9, fontSize: '1.2rem' }}>{icon}</Box>
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: '#fff', fontSize: '0.85rem' }}>
-                    {title}
-                  </Typography>
-                </Box>
+              {listSocialMedia?.map(({ icon, title, href }, index) => (
+                <Link 
+                  key={index} 
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ textDecoration: 'none' }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <Box sx={{ opacity: 0.9, fontSize: '1.2rem', color: '#fff' }}>{icon}</Box>
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: '#fff', fontSize: '0.85rem' }}>
+                      {title}
+                    </Typography>
+                  </Box>
+                </Link>
               ))}
             </Stack>
           </Grid>
