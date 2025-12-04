@@ -12,41 +12,90 @@ import {
   FormControl,
   InputLabel,
   Stack,
+  Snackbar,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import { CompactField } from "./CompactField";
 import { CompactDateField } from "./CompactDateField";
 import { useDataForm } from "@/hooks/useDataForm";
+import { useAppointmentSubmit } from "@/hooks/useAppointmentSubmit";
 import { useEffect } from "react";
 
 const validationSchema = Yup.object({
   name: Yup.string()
     .required("El nombre es requerido")
-    .min(3, "El nombre debe tener al menos 3 caracteres"),
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .max(50, "El nombre no puede exceder 50 caracteres")
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, "El nombre solo puede contener letras"),
+  
   lastName: Yup.string()
     .required("El apellido es requerido")
-    .min(3, "El apellido debe tener al menos 3 caracteres"),
+    .min(2, "El apellido debe tener al menos 2 caracteres")
+    .max(50, "El apellido no puede exceder 50 caracteres")
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, "El apellido solo puede contener letras"),
+  
   email: Yup.string()
-    .email("Ingresa un email válido")
-    .required("El email es requerido"),
+    .required("El email es requerido")
+    .email("Ingresa un email válido (ejemplo: nombre@dominio.com)")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "El formato del email no es válido"
+    ),
+  
   phone: Yup.string()
     .required("El teléfono es requerido")
-    .matches(/^[0-9]+$/, "Debe ser un número de teléfono válido"),
-  date: Yup.date().required("La fecha es requerida"),
-  time: Yup.string().required("La hora es requerida"),
-  reason: Yup.string().required("El motivo de la consulta es requerido"),
-  consultationType: Yup.string().required("El tipo de consulta es requerido"),
-  terms: Yup.boolean().oneOf(
-    [true],
-    "Debes aceptar los términos y condiciones"
-  ),
+    .matches(/^[0-9]+$/, "El teléfono solo puede contener números")
+    .min(10, "El teléfono debe tener al menos 10 dígitos")
+    .max(15, "El teléfono no puede exceder 15 dígitos"),
+  
+  date: Yup.date()
+    .required("La fecha es requerida")
+    .min(new Date(), "La fecha debe ser hoy o en el futuro")
+    .typeError("Ingresa una fecha válida"),
+  
+  time: Yup.string()
+    .required("La hora es requerida")
+    .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Formato de hora inválido (HH:MM)"),
+  
+  reason: Yup.string()
+    .required("El motivo de la consulta es requerido")
+    .min(10, "El motivo debe tener al menos 10 caracteres")
+    .max(500, "El motivo no puede exceder 500 caracteres"),
+  
+  consultationType: Yup.string()
+    .required("El tipo de consulta es requerido")
+    .oneOf(["Presencial", "Online"], "Selecciona un tipo de consulta válido"),
+  
+  terms: Yup.boolean()
+    .oneOf([true], "Debes aceptar los términos y condiciones para continuar")
+    .required("Debes aceptar los términos y condiciones"),
 });
 
 export const AppointmentForm = () => {
   const { formValues } = useDataForm();
+  const { 
+    submitAppointment, 
+    isSubmitting, 
+    submitError, 
+    submitSuccess,
+    clearMessages 
+  } = useAppointmentSubmit();
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      await submitAppointment(values);
+      // Reset form after successful submission
+      resetForm();
+    } catch (error) {
+      // Error is handled by the hook
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    clearMessages();
   };
 
   return (
@@ -187,10 +236,35 @@ export const AppointmentForm = () => {
               size="large"
               disabled={isSubmitting}
               sx={{ mt: 2 }}
+              startIcon={isSubmitting ? <CircularProgress size={20} color="inherit" /> : null}
             >
-              Enviar solicitud
+              {isSubmitting ? "Enviando..." : "Enviar solicitud"}
             </Button>
           </Stack>
+
+          {/* Success Snackbar */}
+          <Snackbar 
+            open={submitSuccess} 
+            autoHideDuration={6000} 
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          >
+            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+              ¡Solicitud enviada exitosamente! Nos pondremos en contacto contigo pronto.
+            </Alert>
+          </Snackbar>
+
+          {/* Error Snackbar */}
+          <Snackbar 
+            open={!!submitError} 
+            autoHideDuration={6000} 
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          >
+            <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+              {submitError || "Error al enviar la solicitud. Por favor, intenta nuevamente."}
+            </Alert>
+          </Snackbar>
         </Form>
         );
       }}

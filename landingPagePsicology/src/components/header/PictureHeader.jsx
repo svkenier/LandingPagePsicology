@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import profilePicture from "@/assets/images/profilePitureHD.png";
+import profilePicture2 from "@/assets/images/profilePiture2HD.jpg";
 
 export const PictureHeader = () => {
   return (
@@ -48,7 +48,7 @@ export const PictureHeader = () => {
       
       <Box 
         component="img"
-        src={profilePicture}
+        src={profilePicture2}
         alt="Psicólogo profesional"
         sx={{
           height: { xs: 'auto', md: '85%' },

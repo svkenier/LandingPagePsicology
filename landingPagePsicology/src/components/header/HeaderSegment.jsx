@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, Button, Paper } from "@mui/material";
-import profilePicture from "@/assets/images/profilePitureHD.png";
+import profilePicture from "@/assets/images/profilePiture2HD.jpg";
 import { useHandleScroll } from "@/hooks/useHandleScroll";
 
 export const HeaderSegment = () => {
@@ -92,7 +92,7 @@ export const HeaderSegment = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  height: { xs: '300px', md: '320px' },
+                  height: { xs: '300px', md: '480px' },
                   overflow: 'hidden',
                   position: 'relative',
                 }}
@@ -104,7 +104,8 @@ export const HeaderSegment = () => {
                   sx={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'contain',
+                    objectFit: 'cover',
+                    objectPosition: '0% 40%',
                   }}
                 />
               </Paper>
@@ -115,9 +116,9 @@ export const HeaderSegment = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  p: 3,
+                  p: { xs: 3, md: 2 },
                   height: '100%',
-                  minHeight: { xs: 'auto', md: '160px' },
+                  minHeight: { xs: 'auto', md: '100px' },
                   bgcolor: 'secondary.main',
                   display: 'flex',
                   flexDirection: 'column',
