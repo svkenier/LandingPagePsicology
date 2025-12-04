@@ -1,47 +1,60 @@
 # Protege Tu Psique - Landing Page
 
-Una landing page moderna y profesional diseñada para un consultorio de psicología, enfocada en ofrecer servicios de terapia online y presencial. El diseño sigue un estilo **Bento** (cuadrículas asimétricas) con una estética limpia, minimalista y totalmente responsiva.
+![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Producci%C3%B3n-success)
+![Firebase](https://img.shields.io/badge/Firebase-Hosting%20%7C%20Auth%20%7C%20Firestore-orange)
+
+**🌐 Sitio en Vivo:** [https://protege-tu-psique.web.app](https://protege-tu-psique.web.app)
+
+Una landing page moderna y profesional diseñada para un consultorio de psicología, enfocada en ofrecer servicios de terapia online y presencial. Incluye un panel de administración completo para la gestión de citas.
+
+## ✨ Características Principales
+
+### 🏠 Landing Page (Pública)
+
+- **Diseño Bento**: Estética moderna con cuadrículas asimétricas.
+- **Totalmente Responsiva**: Adaptable a cualquier dispositivo.
+- **Formulario de Contacto**: Integrado con Firestore para agendar citas.
+- **Enlaces Sociales**: Conexión directa a WhatsApp (con mensaje predefinido), Instagram y TikTok.
+
+### 🔐 Panel de Administración (Privado)
+
+- **Autenticación Segura**: Login con Firebase Auth.
+- **Gestión de Citas (CRUD)**:
+  - **Ver**: Detalles completos de cada solicitud.
+  - **Editar**: Modificar datos de la cita.
+  - **Eliminar**: Borrar registros con confirmación.
+  - **Estados**: Cambiar estado (Pendiente ↔ Confirmada) con un clic.
+- **Búsqueda**: Filtrado rápido de citas por nombre, email o teléfono.
 
 ## 🚀 Tecnologías Utilizadas
 
-Este proyecto ha sido construido utilizando las siguientes tecnologías y librerías:
+### Core & Backend
 
-### Core
-
-- **[React](https://react.dev/)** (v18): Biblioteca de JavaScript para construir interfaces de usuario.
-- **[Vite](https://vitejs.dev/)**: Entorno de desarrollo rápido y herramienta de construcción.
+- **[React](https://react.dev/)** (v18) + **[Vite](https://vitejs.dev/)**
+- **[Firebase](https://firebase.google.com/)**:
+  - **Hosting**: Despliegue rápido y seguro.
+  - **Authentication**: Sistema de login.
+  - **Firestore**: Base de datos NoSQL en tiempo real.
 
 ### UI & Estilos
 
-- **[Material UI (MUI)](https://mui.com/)** (v6): Biblioteca de componentes de React para un diseño rápido y accesible.
-- **[Emotion](https://emotion.sh/)**: Motor de estilos CSS-in-JS utilizado por Material UI.
-- **[Styled Components](https://styled-components.com/)**: Para componentes estilizados personalizados.
-- **[@fontsource/roboto](https://fontsource.org/fonts/roboto)**: Tipografía predeterminada para Material UI.
+- **[Material UI (MUI)](https://mui.com/)** (v6)
+- **[Emotion](https://emotion.sh/)** & **[Styled Components](https://styled-components.com/)**
+- **[Phosphor Icons](https://phosphoricons.com/)** / **MUI Icons**
 
-### Formularios y Validación
+### Formularios & Utilidades
 
-- **[Formik](https://formik.org/)**: Gestión de estado de formularios.
-- **[Yup](https://github.com/jquense/yup)**: Validación de esquemas para los formularios.
+- **[Formik](https://formik.org/)** + **[Yup](https://github.com/jquense/yup)** (Validación)
+- **[React Router](https://reactrouter.com/)** (Navegación)
+- **[jsPDF](https://github.com/parallax/jsPDF)** (Generación de documentos)
 
-### Utilidades
-
-- **[Axios](https://axios-http.com/)**: Cliente HTTP para futuras integraciones de API.
-- **[ESLint](https://eslint.org/)**: Linter para identificar y reportar patrones en el código JavaScript.
-
-## 🎨 Características de Diseño
-
-- **Estilo Bento**: Diseño basado en cuadrículas asimétricas para una presentación de contenido dinámica y moderna.
-- **Diseño Responsivo**: Adaptable a dispositivos móviles, tablets y escritorio.
-- **Scroll Suave**: Navegación fluida entre secciones.
-- **Tema Personalizado**: Paleta de colores y tipografía ajustada a la identidad de marca.
-
-## 🛠️ Instalación y Ejecución
+## 🛠️ Instalación y Ejecución Local
 
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone <url-del-repositorio>
-    cd landingPagePsicology
+    git clone https://github.com/svkenier/LandingPagePsicology.git
+    cd LandingPagePsicology
     ```
 
 2.  **Instalar dependencias:**
@@ -50,13 +63,26 @@ Este proyecto ha sido construido utilizando las siguientes tecnologías y librer
     npm install
     ```
 
-3.  **Ejecutar servidor de desarrollo:**
+3.  **Configurar Variables de Entorno:**
+    Crear un archivo `.env` o configurar `src/config/firebaseConfig.js` con tus credenciales de Firebase.
+
+4.  **Ejecutar servidor de desarrollo:**
 
     ```bash
     npm run dev
     ```
 
-4.  **Construir para producción:**
+5.  **Construir para producción:**
     ```bash
     npm run build
     ```
+
+## 📞 Contacto y Redes
+
+- **WhatsApp**: [+58 412-7713052](https://wa.me/584127713052?text=me%20gustaria%20solicitar%20informacion%20de%20su%20servicios)
+- **Instagram**: [@protegetupsique](https://www.instagram.com/protegetupsique/)
+- **TikTok**: [@protegetupsique](https://www.tiktok.com/@protegetupsique)
+
+---
+
+© 2025 Protege Tu Psique. Todos los derechos reservados.
