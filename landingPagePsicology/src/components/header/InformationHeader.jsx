@@ -1,58 +1,65 @@
 import { Stack, Typography, Button, Box } from "@mui/material";
-import { colorsPalette } from "@/styles/colorsPalette";
 import { useHandleScroll } from "@/hooks/useHandleScroll";
 
 export const InformationHeader = () => {
+  const { handleScroll } = useHandleScroll();
 
-const {handleScroll} = useHandleScroll()
-
-  const { text, textSecondary, primary } = colorsPalette();
   return (
     <Stack
       sx={{
         display: "flex",
-        width: "60%",
+        width: { xs: '100%', md: '55%' },
         height: "100%",
         justifyContent: "center",
+        gap: { xs: 2, sm: 3 },
       }}
-      spacing={2}
     >
       <Typography
-        variant="h3"
+        variant="h1"
         component="h1"
-        color={textSecondary}
-        sx={{ display: "flex", alignSelf: "center" }}
+        color="text.secondary"
+        sx={{ 
+          textAlign: { xs: 'center', md: 'left' },
+          fontWeight: 700,
+        }}
       >
         CONSULTA PSICOLÓGICA ONLINE
       </Typography>
+      
       <Typography
         variant="body1"
         component="p"
-        color={text}
+        color="text.primary"
         sx={{
-          display: "flex",
-          alignSelf: "center",
-          width: "90%",
-          marginBottom: "10px",
-          fontSize: "1.6rem",
+          textAlign: { xs: 'center', md: 'left' },
+          fontSize: { xs: '1.05rem', sm: '1.15rem', md: '1.25rem' },
+          lineHeight: 1.7,
+          maxWidth: { md: '90%' },
         }}
       >
         Terapia online segura y confidencial, diseñada para cuidar de ti en cada
         paso. Encuentra calma, claridad y herramientas para vivir en equilibrio.
       </Typography>
+      
       <Box
         sx={{
           width: "100%",
           display: "flex",
-          justifyContent: "center",
-          paddingTop: "8%",
+          justifyContent: { xs: 'center', md: 'flex-start' },
+          pt: { xs: 2, md: 3 },
         }}
       >
         <Button
           variant="contained"
           size="large"
-          sx={{ bgcolor: `${primary}`, width: "50%", height: "3.5rem" }}
-          onClick={(e)=>{ handleScroll(e, "Contacto")}}
+          onClick={(e) => { handleScroll(e, "Contacto") }}
+          sx={{ 
+            width: { xs: '100%', sm: '70%', md: '60%' },
+            maxWidth: 400,
+            height: { xs: '3rem', sm: '3.5rem' },
+            fontSize: { xs: '0.95rem', sm: '1rem' },
+            fontWeight: 600,
+          }}
         >
           Agendar sesión inicial
         </Button>

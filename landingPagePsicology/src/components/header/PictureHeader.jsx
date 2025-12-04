@@ -1,54 +1,64 @@
-import { Box, CardMedia } from "@mui/material";
+import { Box } from "@mui/material";
 import profilePicture from "@/assets/images/profilePitureHD.png";
-import { colorsPalette } from "@/styles/colorsPalette";
 
 export const PictureHeader = () => {
-  const { primary } = colorsPalette();
-
   return (
-    <Box sx={{ height: "100%", width: "40%" }}>
+    <Box 
+      sx={{ 
+        height: { xs: 'auto', md: '100%' }, 
+        width: { xs: '100%', md: '45%' }, 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        position: 'relative',
+        mt: { xs: 4, md: 0 },
+      }}
+    >
+      {/* Decorative borders - hidden on mobile for minimalist look */}
       <Box
         sx={{
-          height: "86%",
-          width: "34%",
-          position: "absolute",
-          display: "flex",
-          justifyContent: "space-between",
+          display: { xs: 'none', md: 'flex' },
+          height: '80%',
+          width: '80%',
+          position: 'absolute',
+          justifyContent: 'space-between',
         }}
       >
         <Box
           sx={{
-            height: "85%",
-            width: "25%",
-            border: `solid ${primary}`,
-            margin: "2% 0 0 14% ",
+            height: '85%',
+            width: '2px',
+            bgcolor: 'primary.main',
+            position: 'absolute',
+            left: '10%',
+            top: '0',
           }}
-        ></Box>
+        />
         <Box
           sx={{
-            height: "70%",
-            width: "25%",
-            border: `solid ${primary}`,
-            display: "flex",
-            alignSelf: "flex-end",
-            margin: "0 2%  2% 0",
-          }}
-        ></Box>
-      </Box>
-      <Box sx={{ height: "100%", width: "100%", position: "relative" }}>
-        <CardMedia
-          component={"img"}
-          title="profilePicture"
-          image={profilePicture}
-          sx={{
-            height: "90%",
-            width: "100%",
-            objectFit: "contain",
-            display: "flex",
-            marginTop: "5%",
+            height: '2px',
+            width: '70%',
+            bgcolor: 'primary.main',
+            position: 'absolute',
+            bottom: '15%',
+            right: '0',
           }}
         />
       </Box>
+      
+      <Box 
+        component="img"
+        src={profilePicture}
+        alt="Psicólogo profesional"
+        sx={{
+          height: { xs: 'auto', md: '85%' },
+          width: { xs: '75%', sm: '60%', md: '90%' },
+          maxWidth: 500,
+          objectFit: 'contain',
+          position: 'relative',
+          zIndex: 1,
+        }}
+      />
     </Box>
   );
 };

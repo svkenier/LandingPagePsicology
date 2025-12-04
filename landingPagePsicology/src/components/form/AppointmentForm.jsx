@@ -11,16 +11,13 @@ import {
   Select,
   FormControl,
   InputLabel,
-  
   Stack,
 } from "@mui/material";
-import { colorsPalette } from "@/styles/colorsPalette";
 import { CompactField } from "./CompactField";
 import { CompactDateField } from "./CompactDateField";
 import { useDataForm } from "@/hooks/useDataForm";
 
 const validationSchema = Yup.object({
-  // Mantener el esquema de validación original
   name: Yup.string()
     .required("El nombre es requerido")
     .min(3, "El nombre debe tener al menos 3 caracteres"),
@@ -44,11 +41,7 @@ const validationSchema = Yup.object({
 });
 
 export const AppointmentForm = () => {
-  const { primary, details } = colorsPalette();
-
-  // Mantener initialValues y handleSubmit originales
-
- const {formValues} = useDataForm()
+  const { formValues } = useDataForm();
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log(values);
@@ -56,167 +49,140 @@ export const AppointmentForm = () => {
   };
 
   return (
-    <Stack sx={{ border: `solid ${details} 0.1em `, width:"40%", height: "100%", padding:"1rem",borderRadius:"0.2rem"}}>
-      <Formik
-        initialValues={formValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting, errors, touched, values, handleChange }) => (
-          <Form>
-            <Stack
-              sx={{ padding: " 0 1rem" }}
-              spacing={1.5}
-            >
-              <Box sx={{ width: "100%", display: "flex", gap: 2 }}>
-                <CompactField
-                  name="name"
-                  label="Nombre"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.name}
-                />
-                <CompactField
-                  name="lastName"
-                  label="Apellido"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.lastName}
-
-                />
-              </Box>
-
-              <Box sx={{ width: "100%" }}>
-                <CompactField
-                  name="email"
-                  label="Email"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.email}
-
-                />
-                <CompactField
-                  name="phone"
-                  label="Teléfono"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.phone}
-
-                />
-
-                <FormControl
-                  fullWidth
-                  size="small"
-                  margin="dense"
-                  error={
-                    touched.consultationType && Boolean(errors.consultationType)
-                  }
-                >
-                  <InputLabel sx={{ fontSize: "0.875rem" }}>
-                    Tipo de Consulta
-                  </InputLabel>
-                  <Field
-                    as={Select}
-                    name="consultationType"
-                    label="Tipo de Consulta"
-                    sx={{ fontSize: "0.875rem" }}
-                    value={values.consultationType}
-                    onChange={handleChange}
-                  >
-                    <MenuItem  value="Presencial" sx={{ fontSize: "0.875rem" }}>
-                      Presencial
-                    </MenuItem>
-                    <MenuItem value="Online" sx={{ fontSize: "0.875rem" }}>
-                      Online
-                    </MenuItem>
-                  </Field>
-                </FormControl>
-                <Typography variant="body1" color={primary} textAlign="center">
-                  Fecha y hora Preferida
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: 1 }}>
-                <CompactDateField
-                  name="date"
-                  label="Fecha"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.date}
-                />
-                <CompactDateField
-                  name="time"
-                  label="Hora"
-                  errors={errors}
-                  touched={touched}
-                  onChange={handleChange}
-                  value={values.time}
-                />
-              </Box>
-
-              <Field
-                as={TextField}
-                name="reason"
-                label="Motivo de la consulta"
-                fullWidth
-                multiline
-                rows={3}
-                size="small"
-                margin="dense"
-                error={touched.reason && Boolean(errors.reason)}
-                helperText={touched.reason && errors.reason}
-                sx={{
-                  "& .MuiInputBase-root": { fontSize: "0.875rem" },
-                  "& .MuiFormHelperText-root": { fontSize: "0.7rem", mx: 0 },
-                }}
-                value={values.reason}
+    <Formik
+      initialValues={formValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ isSubmitting, errors, touched, values, handleChange }) => (
+        <Form>
+          <Stack spacing={2.5}>
+            <Box sx={{ display: "flex", gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+              <CompactField
+                name="name"
+                label="Nombre"
+                errors={errors}
+                touched={touched}
                 onChange={handleChange}
+                value={values.name}
               />
-
-              <FormControlLabel
-                control={
-                  <Field
-                    as={Checkbox}
-                    name="terms"
-                    color="primary"
-                    size="small"
-                    sx={{ py: 0 }}
-                    value={values.terms}
-                  />
-                }
-                label={
-                  <Typography variant="body2" sx={{ fontSize: "0.75rem" }}>
-                    Acepto los términos y condiciones
-                  </Typography>
-                }
+              <CompactField
+                name="lastName"
+                label="Apellido"
+                errors={errors}
+                touched={touched}
+                onChange={handleChange}
+                value={values.lastName}
               />
+            </Box>
 
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                size="small"
-                disabled={isSubmitting}
-                sx={{
-                  mt: 2,
-                  backgroundColor: primary,
-                  fontSize: "0.875rem",
-                  py: 0.5,
-                  "&:hover": { backgroundColor: primary },
-                }}
+            <CompactField
+              name="email"
+              label="Email"
+              errors={errors}
+              touched={touched}
+              onChange={handleChange}
+              value={values.email}
+            />
+
+            <CompactField
+              name="phone"
+              label="Teléfono"
+              errors={errors}
+              touched={touched}
+              onChange={handleChange}
+              value={values.phone}
+            />
+
+            <FormControl
+              fullWidth
+              size="small"
+              error={touched.consultationType && Boolean(errors.consultationType)}
+            >
+              <InputLabel>Tipo de Consulta</InputLabel>
+              <Field
+                as={Select}
+                name="consultationType"
+                label="Tipo de Consulta"
+                value={values.consultationType}
+                onChange={handleChange}
               >
-                Enviar
-              </Button>
-            </Stack>
-          </Form>
-        )}
-      </Formik>
-    </Stack>
+                <MenuItem value="Presencial">Presencial</MenuItem>
+                <MenuItem value="Online">Online</MenuItem>
+              </Field>
+            </FormControl>
+
+            <Typography
+              variant="subtitle1"
+              color="primary.main"
+              sx={{ fontWeight: 600, pt: 1 }}
+            >
+              Fecha y hora preferida
+            </Typography>
+
+            <Box sx={{ display: "flex", gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+              <CompactDateField
+                name="date"
+                label="Fecha"
+                errors={errors}
+                touched={touched}
+                onChange={handleChange}
+                value={values.date}
+              />
+              <CompactDateField
+                name="time"
+                label="Hora"
+                errors={errors}
+                touched={touched}
+                onChange={handleChange}
+                value={values.time}
+              />
+            </Box>
+
+            <Field
+              as={TextField}
+              name="reason"
+              label="Motivo de la consulta"
+              fullWidth
+              multiline
+              rows={4}
+              size="small"
+              error={touched.reason && Boolean(errors.reason)}
+              helperText={touched.reason && errors.reason}
+              value={values.reason}
+              onChange={handleChange}
+            />
+
+            <FormControlLabel
+              control={
+                <Field
+                  as={Checkbox}
+                  name="terms"
+                  color="primary"
+                  size="small"
+                  value={values.terms}
+                />
+              }
+              label={
+                <Typography variant="body2">
+                  Acepto los términos y condiciones
+                </Typography>
+              }
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              size="large"
+              disabled={isSubmitting}
+              sx={{ mt: 2 }}
+            >
+              Enviar solicitud
+            </Button>
+          </Stack>
+        </Form>
+      )}
+    </Formik>
   );
 };
-
-

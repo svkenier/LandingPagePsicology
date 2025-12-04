@@ -1,30 +1,40 @@
-import { Box, Stack, Typography } from "@mui/material"
-import { colorsPalette } from "@/styles/colorsPalette"
-import { contentLists } from "@/assets/contentManagement/contentLists"
-
+import { Box, Stack, Typography } from "@mui/material";
+import { contentLists } from "@/assets/contentManagement/contentLists";
 
 export const WorkMethodology = () => {
-
-
-        const {listMethology} = contentLists()
-       
-        const {primary,text,textSecondary} = colorsPalette()
+  const { listMethology } = contentLists();
 
   return (
-    <Stack > 
-
-    <Typography sx={{margin:"0.8rem 1rem"}} fontSize="1.4rem" variant="h6" component="h3" color={primary}>
-    Metodología de trabajo:
-    </Typography>
-        {listMethology.map(({title,info},index)=> (
-            <Box sx={{margin:"0.7rem 1rem"}}  key={index}>
-                <Typography variant="body2" color={textSecondary} fontSize="1eem" >
-                {title} <Typography variant="span" fontSize="1rem" color={text}>
-                {info}
-                </Typography>
-                </Typography>
-            </Box>
-        ))}
+    <Stack spacing={2.5}>
+      <Typography 
+        variant="h4" 
+        component="h3" 
+        color="primary.main"
+        sx={{ fontWeight: 700 }}
+      >
+        Metodología de trabajo:
+      </Typography>
+      
+      {listMethology.map(({ title, info }, index) => (
+        <Box key={index}>
+          <Typography 
+            variant="subtitle1" 
+            color="text.secondary" 
+            component="span"
+            sx={{ fontWeight: 600 }}
+          >
+            {title}{' '}
+          </Typography>
+          <Typography 
+            variant="body1" 
+            color="text.primary"
+            component="span"
+            sx={{ lineHeight: 1.7 }}
+          >
+            {info}
+          </Typography>
+        </Box>
+      ))}
     </Stack>
-  )
-}
+  );
+};

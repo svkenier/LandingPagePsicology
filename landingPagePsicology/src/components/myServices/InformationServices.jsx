@@ -1,67 +1,78 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { colorsPalette } from "@/styles/colorsPalette";
 import { contentLists } from "@/assets/contentManagement/contentLists";
 
-const { primary, text, textSecondary } = colorsPalette();
-
-const { sesionContent, keyBenefits } = contentLists();
-
 export const InformationServices = () => {
+  const { sesionContent, keyBenefits } = contentLists();
+
   return (
-    <Stack sx={{ width: "30%" }}>
-      <Stack sx={{ width: "100%", padding: "1rem" }}>
-        <Typography variant="h6" color={primary}>
+    <Stack spacing={4}>
+      <Stack spacing={2.5}>
+        <Typography 
+          variant="h4" 
+          color="primary.main" 
+          sx={{ fontWeight: 700 }}
+        >
           ¿Qué incluye cada sesión?
         </Typography>
 
-        <Stack sx={{ width: "100%" }}>
+        <Stack spacing={2}>
           {sesionContent.map(({ title, Info }, index) => (
-            <Typography
-              sx={{ padding: "0.7rem" }}
-              key={index}
-              variant="body1"
-              component="p"
-              color={textSecondary}
-              fontSize={"0.9rem"}
-            >
-              {title}
-              <Typography
-                variant="body1"
-                component="span"
-                color={text}
-                fontSize={"0.9rem"}
+            <Box key={index}>
+              <Typography 
+                variant="subtitle1" 
+                color="text.secondary" 
+                sx={{ fontWeight: 600 }}
+              >
+                {title}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                color="text.primary" 
+                sx={{ mt: 0.5, lineHeight: 1.6 }}
               >
                 {Info}
               </Typography>
-            </Typography>
+            </Box>
           ))}
         </Stack>
       </Stack>
-      <Stack sx={{ width: "100%", padding: "1rem" }}>
-        <Typography variant="h6" color={primary}>
+
+      <Stack spacing={2.5}>
+        <Typography 
+          variant="h4" 
+          color="primary.main" 
+          sx={{ fontWeight: 700 }}
+        >
           Beneficios Clave
         </Typography>
 
-        <Stack>
+        <Stack spacing={2}>
           {keyBenefits.map(({ title, Info, icon }, index) => (
-            <Box sx={{ display: "flex", padding: "0.7rem" }} key={index}>
-              {icon}
-              <Typography
-                variant="body1"
-                component="p"
-                color={textSecondary}
-                fontSize={"0.9rem"}
-              >
-                {title}{" "}
-                <Typography
-                  variant="body1"
-                  component="span"
-                  color={text}
-                  fontSize={"0.9rem"}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                gap: 1.5, 
+                alignItems: 'flex-start' 
+              }} 
+              key={index}
+            >
+              <Box sx={{ mt: 0.3, flexShrink: 0 }}>{icon}</Box>
+              <Box>
+                <Typography 
+                  variant="subtitle1" 
+                  color="text.secondary" 
+                  sx={{ fontWeight: 600 }}
+                >
+                  {title}
+                </Typography>
+                <Typography 
+                  variant="body2" 
+                  color="text.primary"
+                  sx={{ lineHeight: 1.6 }}
                 >
                   {Info}
                 </Typography>
-              </Typography>
+              </Box>
             </Box>
           ))}
         </Stack>

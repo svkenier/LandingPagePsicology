@@ -2,62 +2,75 @@ import {
   Typography,
   CardMedia,
   CardContent,
-  CardActionArea,
   Card,
+  Box,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { colorsPalette } from "@/styles/colorsPalette";
 
 export const CardCustom = ({ card }) => {
   CardCustom.propTypes = {
     card: PropTypes.object.isRequired,
   };
 
-  const { textSecondary } = colorsPalette();
-
   return (
     <Card
-      sx={{ maxWidth: 345, margin: "1rem 5rem", display: "flex", width: "20%" }}
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-8px)',
+          boxShadow: '0 12px 24px rgba(0,0,0,0.12)',
+        },
+      }}
     >
-      <CardActionArea
+      <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          pt: 4,
+          pb: 2,
         }}
       >
         <CardMedia
           component="img"
-          height="140"
           image={card.image}
-          alt="imagen card"
+          alt={card.title}
           sx={{
-            height: "100%",
-            width: "50%",
-            objectFit: "contain",
-            display: "flex",
-            marginTop: "5%",
+            height: 120,
+            width: 'auto',
+            objectFit: 'contain',
           }}
         />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            color={textSecondary}
-            textAlign={"center"}
-          >
-            {card.title}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: "text.secondary", textAlign: "center" }}
-          >
-            {card.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      </Box>
+      
+      <CardContent sx={{ flexGrow: 1, textAlign: 'center', px: 3, pb: 3 }}>
+        <Typography
+          gutterBottom
+          variant="h4"
+          component="h3"
+          color="text.secondary"
+          sx={{ 
+            fontWeight: 600,
+            mb: 1.5,
+          }}
+        >
+          {card.title}
+        </Typography>
+        
+        <Typography
+          variant="body2"
+          color="text.primary"
+          sx={{ 
+            lineHeight: 1.6,
+            fontSize: '0.95rem',
+          }}
+        >
+          {card.description}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

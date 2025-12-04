@@ -1,10 +1,7 @@
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography, Box, Paper } from "@mui/material";
 import PropTypes from "prop-types";
-import { colorsPalette } from "@/styles/colorsPalette";
 
 export const CardOfList = ({ skill }) => {
-  const { primary, text, textSecondary,secondary } = colorsPalette();
-
   const { skills, title } = skill;
 
   CardOfList.propTypes = {
@@ -13,7 +10,7 @@ export const CardOfList = ({ skill }) => {
       skills: PropTypes.arrayOf(
         PropTypes.shape({
           icon: PropTypes.node.isRequired,
-          SubTitle: PropTypes.string,
+          subTitle: PropTypes.string,
           info: PropTypes.string.isRequired,
         })
       ).isRequired,
@@ -21,42 +18,64 @@ export const CardOfList = ({ skill }) => {
   };
 
   return (
-    <Box
-      sx={{
-        width: "45%",
-        display: "flex",
-        padding: "1.5rem",
-        justifyContent: "center",
-        margin: "0 1rem",
+    <Paper 
+      elevation={0} 
+      sx={{ 
+        width: "100%", 
+        p: { xs: 2.5, sm: 3 }, 
+        border: '1px solid',
+        borderColor: 'secondary.main',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          borderColor: 'primary.main',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+        },
       }}
     >
-      <Stack spacing={1.5} paddingTop={2} sx={{
-        border:`solid ${secondary} 0.1rem`, padding:"1rem", borderRadius:"0.2rem"
-      }} >
-        <Typography variant="h6" fontSize="1.2rem" component="h3" color={primary}>
+      <Stack spacing={2}>
+        <Typography 
+          variant="h4" 
+          component="h3" 
+          color="primary.main" 
+          sx={{ fontWeight: 700 }}
+        >
           {title}
         </Typography>
 
         {skills.map(({ icon, subTitle, info }, index) => (
-          <Box key={index} sx={{ display: "flex", width: "100%", }} >
-
-            <Box marginRight={1}>{icon}</Box>
-            
-            {subTitle ? (
-              <Typography variant="body1" sx={{fontSize:"1rem",width:"100%",margin:"0.2rem"}} color={textSecondary}>
-                {subTitle}{" "}
-                <Typography variant="span" fontSize="1rem" color={text}>
-                  {info}
+          <Box 
+            key={index} 
+            sx={{ 
+              display: "flex", 
+              alignItems: 'flex-start', 
+              gap: 1.5 
+            }}
+          >
+            <Box sx={{ mt: 0.3, flexShrink: 0 }}>{icon}</Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              {subTitle && (
+                <Typography 
+                  variant="subtitle1" 
+                  color="text.secondary" 
+                  sx={{ fontWeight: 600 }}
+                >
+                  {subTitle}
                 </Typography>
-              </Typography>
-            ) : (
-              <Typography variant="body1" fontSize="1rem" margin="0.2rem" color={text}>
+              )}
+              <Typography 
+                variant="body2" 
+                color="text.primary" 
+                sx={{ 
+                  mt: subTitle ? 0.5 : 0,
+                  lineHeight: 1.6,
+                }}
+              >
                 {info}
               </Typography>
-            )}
+            </Box>
           </Box>
         ))}
       </Stack>
-    </Box>
+    </Paper>
   );
 };

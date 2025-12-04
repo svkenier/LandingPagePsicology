@@ -1,69 +1,73 @@
-import {
-  Stack,
-  Typography,
-  CardMedia,
-  Card,
-  CardActionArea,
-  Box,
-} from "@mui/material";
+import { Stack, Typography, Card, CardMedia, Box } from "@mui/material";
 import PropTypes from "prop-types";
-import { colorsPalette } from "@/styles/colorsPalette";
 
 export const CardServices = ({ informationCard }) => {
   CardServices.propTypes = {
     informationCard: PropTypes.object.isRequired,
   };
 
-  const { text, textSecondary,secondary } = colorsPalette();
-
   return (
     <Card
       sx={{
-        border: `solid ${secondary} 1.5px`,
-        borderRadius: "0.4rem",
-        alignItemsc: "center",
-        margin: "1rem",
-        padding: "1rem",
-        width: "100%",
-        justifyContent: "center",
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: '0 12px 24px rgba(0,0,0,0.12)',
+        },
       }}
     >
-      <CardActionArea sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography variant="h5" color={textSecondary}>
+      <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <Typography 
+          variant="h4" 
+          color="text.secondary" 
+          sx={{ 
+            fontWeight: 700, 
+            mb: 2, 
+            textAlign: 'center',
+          }}
+        >
           {informationCard.title}
         </Typography>
 
-        <Box
-          sx={{
-            height: "30%",
-            width: "40%",
-            objectFit: "contain",
-            display: "flex",
+        <Box 
+          sx={{ 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            my: 2,
           }}
         >
           <CardMedia
             component="img"
-            height="140"
             image={informationCard.image}
-            alt="imagen card"
-            sx={{ height: "100%", width: "100%", objectFit: "contain" }}
+            alt={informationCard.title}
+            sx={{ 
+              width: { xs: '70%', sm: '60%' }, 
+              height: 'auto', 
+              objectFit: 'contain',
+            }}
           />
         </Box>
 
-        <Stack sx={{ width: "100%" }}>
+        <Stack spacing={1.5} sx={{ flexGrow: 1 }}>
           {informationCard.info.map((textCard, index) => (
-            <Typography
-              key={index}
-              variant="body1"
-              color={text}
-              fontSize={"0.8rem"}
-              margin={"0.5rem"}
+            <Typography 
+              key={index} 
+              variant="body2" 
+              color="text.primary" 
+              sx={{ 
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+              }}
             >
               {textCard}
             </Typography>
           ))}
         </Stack>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 };

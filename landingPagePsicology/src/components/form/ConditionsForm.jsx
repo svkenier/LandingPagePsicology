@@ -1,21 +1,28 @@
 import { contentLists } from "@/assets/contentManagement/contentLists";
-import { colorsPalette } from "@/styles/colorsPalette";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 
 export const ConditionsForm = () => {
   const { listConditionsForm } = contentLists();
-  const {primary,text} = colorsPalette()
+  
   return (
-    <Stack sx={{width:"60%", padding:"2rem", }} spacing={1.5} >
+    <Stack spacing={3}>
       {listConditionsForm.map(({ title, description }, index) => (
-        <Stack key={index}>
-          <Typography variant="h6" color={primary} fontSize="1.3rem" gutterBottom>
+        <Box key={index}>
+          <Typography 
+            variant="h4" 
+            color="primary.main" 
+            sx={{ fontWeight: 700, mb: 1.5 }}
+          >
             {title}
           </Typography>
-          <Typography variant="body2" color={text} fontSize="1rem" gutterBottom>
+          <Typography 
+            variant="body1" 
+            color="text.primary" 
+            sx={{ lineHeight: 1.7 }}
+          >
             {description}
           </Typography>
-        </Stack>
+        </Box>
       ))}
     </Stack>
   );
