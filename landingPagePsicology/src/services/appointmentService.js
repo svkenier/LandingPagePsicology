@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, getDocs, doc, getDoc, updateDoc, deleteDoc, query, orderBy } from "firebase/firestore";
 import { db } from "@/config/firebaseConfig";
 
 /**
@@ -23,6 +23,90 @@ export const saveAppointment = async (appointmentData) => {
   } catch (error) {
     console.error("Error saving appointment:", error);
     throw new Error("No se pudo guardar la cita. Por favor, intenta nuevamente.");
+  }
+};
+
+/**
+ * Get all appointments from Firestore
+ * @returns {Promise<Array>} - Array of appointments with IDs
+ */
+export const getAllAppointments = async () => {
+  try {
+    const q = query(collection(db, "appointments"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+    const appointments = [];
+    
+    querySnapshot.forEach((doc) => {
+      appointments.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    
+    return appointments;
+  } catch (error) {
+    console.error("Error getting appointments:", error);
+    throw new Error("No se pudieron cargar las citas");
+  }
+};
+
+/**
+ * Get single appointment by ID
+ * @param {string} id - Appointment ID
+ * @returns {Promise<Object>} - Appointment data
+ */
+export const getAppointmentById = async (id) => {
+  try {
+    const docRef = doc(db, "appointments", id);
+    const docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      return {
+        id: docSnap.id,
+        ...docSnap.data(),
+      };
+    } else {
+      throw new Error("Cita no encontrada");
+    }
+  } catch (error) {
+    console.error("Error getting appointment:", error);
+    throw new Error("No se pudo cargar la cita");
+  }
+};
+
+/**
+ * Update appointment
+ * @param {string} id - Appointment ID
+ * @param {Object} data - Updated data
+ * @returns {Promise<void>}
+ */
+export const updateAppointment = async (id, data) => {
+  try {
+    const docRef = doc(db, "appointments", id);
+    await updateDoc(docRef, {
+      ...data,
+      updatedAt: serverTimestamp(),
+    });
+    console.log("Appointment updated successfully");
+  } catch (error) {
+    console.error("Error updating appointment:", error);
+    throw new Error("No se pudo actualizar la cita");
+  }
+};
+
+/**
+ * Delete appointment
+ * @param {string} id - Appointment ID
+ * @returns {Promise<void>}
+ */
+export const deleteAppointment = async (id) => {
+  try {
+    const docRef = doc(db, "appointments", id);
+    await deleteDoc(docRef);
+    console.log("Appointment deleted successfully");
+  } catch (error) {
+    console.error("Error deleting appointment:", error);
+    throw new Error("No se pudo eliminar la cita");
   }
 };
 

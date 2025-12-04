@@ -1,16 +1,21 @@
-import { AppBar, Toolbar, IconButton, Box, Drawer, List, ListItem, ListItemButton, ListItemText, useTheme, useMediaQuery, Paper } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Box, Drawer, List, ListItem, ListItemButton, ListItemText, useTheme, useMediaQuery, Paper, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import logoPicture from "../../assets/images/logoNameHDsf.png";
 import PropTypes from "prop-types";
 import { contentLists } from "@/assets/contentManagement/contentLists";
 import { useHandleScroll } from "@/hooks/useHandleScroll";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const NavSegment = ({ handleActiveMenu, activeMenu }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { handleScroll } = useHandleScroll();
   const { listQuickLinks } = contentLists();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   NavSegment.propTypes = {
     activeMenu: PropTypes.bool.isRequired,
@@ -61,7 +66,7 @@ export const NavSegment = ({ handleActiveMenu, activeMenu }) => {
               {activeMenu ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
           ) : (
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
               {listQuickLinks?.map((linkMenu, index) => (
                 <Paper
                   key={index}
@@ -91,6 +96,26 @@ export const NavSegment = ({ handleActiveMenu, activeMenu }) => {
                   {linkMenu}
                 </Paper>
               ))}
+              <Button
+                variant="outlined"
+                startIcon={<AdminPanelSettingsIcon />}
+                onClick={() => navigate(isAuthenticated ? '/admin' : '/login')}
+                sx={{
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  fontWeight: 600,
+                  px: 2.5,
+                  py: 1,
+                  '&:hover': {
+                    bgcolor: 'primary.main',
+                    color: '#fff',
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {isAuthenticated ? 'Dashboard' : 'Admin'}
+              </Button>
             </Box>
           )}
         </Toolbar>
