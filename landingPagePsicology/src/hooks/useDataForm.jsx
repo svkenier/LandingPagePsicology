@@ -1,31 +1,49 @@
-import {useState} from 'react'
+import { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
-export const useDataForm = () => {
+const FormContext = createContext();
 
-    const initialValues = {
-        name: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        date: "",
-        time: "",
-        reason: "",
-        consultationType: "",
-        terms: false,
-      };
+export const FormProvider = ({ children }) => {
+  const initialValues = {
+    name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    date: "",
+    time: "",
+    reason: "",
+    consultationType: "",
+    terms: false,
+  };
 
-    const [formValues, setformValues] = useState(initialValues)
+  const [formValues, setFormValues] = useState(initialValues);
 
-    const handleFormValues = (newValue) =>{
-        setformValues(
-            newValue
-        )
-    }
+  const handleFormValues = (newValue) => {
+    setFormValues(newValue);
+  };
+
+  const setConsultationType = (type) => {
+    setFormValues(prev => ({
+      ...prev,
+      consultationType: type
+    }));
+  };
 
   return (
-    {
-        formValues,
-        handleFormValues
-    }
-  )
-}
+    <FormContext.Provider value={{ formValues, handleFormValues, setConsultationType }}>
+      {children}
+    </FormContext.Provider>
+  );
+};
+
+FormProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export const useDataForm = () => {
+  const context = useContext(FormContext);
+  if (!context) {
+    throw new Error('useDataForm must be used within a FormProvider');
+  }
+  return context;
+};

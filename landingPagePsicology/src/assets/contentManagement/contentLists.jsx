@@ -199,9 +199,69 @@ export const contentLists = () => {
   ]
 
   const listLegalLinks = [
-    "Politica de privacidad",
-    "Terminos y condiciones",
-    "Aviso legal"
+    {
+      title: "Politica de privacidad",
+      fileName: "politica_privacidad.pdf",
+      content: `POLÍTICA DE PRIVACIDAD
+
+1. RESPONSABLE DEL TRATAMIENTO
+Protege Tu Psique, con domicilio en Maracaibo, Venezuela, es responsable del tratamiento de sus datos personales.
+
+2. FINALIDAD DEL TRATAMIENTO
+Los datos personales que nos proporciona serán utilizados para:
+- Gestionar sus citas y consultas.
+- Enviarle información sobre nuestros servicios.
+- Cumplir con obligaciones legales.
+
+3. DERECHOS DEL USUARIO
+Usted tiene derecho a acceder, rectificar y suprimir sus datos, así como a oponerse al tratamiento de los mismos.
+
+4. SEGURIDAD
+Implementamos medidas de seguridad para proteger sus datos contra acceso no autorizado o pérdida.
+
+Fecha de última actualización: 2025`
+    },
+    {
+      title: "Terminos y condiciones",
+      fileName: "terminos_condiciones.pdf",
+      content: `TÉRMINOS Y CONDICIONES DE USO
+
+1. ACEPTACIÓN DE LOS TÉRMINOS
+Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos términos y condiciones.
+
+2. SERVICIOS
+Protege Tu Psique ofrece servicios de psicología clínica online y presencial. Los servicios están sujetos a disponibilidad.
+
+3. PROPIEDAD INTELECTUAL
+Todo el contenido de este sitio web (textos, imágenes, logos) es propiedad de Protege Tu Psique y está protegido por leyes de derechos de autor.
+
+4. LIMITACIÓN DE RESPONSABILIDAD
+No nos hacemos responsables por daños directos o indirectos derivados del uso de este sitio web.
+
+5. MODIFICACIONES
+Nos reservamos el derecho de modificar estos términos en cualquier momento.
+
+Fecha de última actualización: 2025`
+    },
+    {
+      title: "Aviso legal",
+      fileName: "aviso_legal.pdf",
+      content: `AVISO LEGAL
+
+1. DATOS IDENTIFICATIVOS
+En cumplimiento con el deber de información, se notifica que este sitio web es operado por Protege Tu Psique.
+
+2. USO DEL SITIO WEB
+El usuario se compromete a utilizar el sitio web de conformidad con la ley y el orden público.
+
+3. ENLACES A TERCEROS
+Este sitio puede contener enlaces a sitios de terceros. No asumimos responsabilidad por el contenido de dichos sitios.
+
+4. LEY APLICABLE
+Este aviso legal se rige por las leyes de la República Bolivariana de Venezuela.
+
+Contacto: contacto@protegetupsique.com`
+    }
   ]
 
   const listSocialMedia =[

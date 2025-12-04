@@ -1,4 +1,5 @@
 import { Box, Container, Grid, Typography, Stack, Link, Divider } from "@mui/material";
+import { jsPDF } from "jspdf";
 import { ContactDropDawn } from "./ContactDropDawn";
 import { contentLists } from "@/assets/contentManagement/contentLists";
 import { useHandleScroll } from "@/hooks/useHandleScroll";
@@ -6,6 +7,24 @@ import { useHandleScroll } from "@/hooks/useHandleScroll";
 export const FooterSegment = () => {
   const { listQuickLinks, listLegalLinks, listSocialMedia } = contentLists();
   const { handleScroll } = useHandleScroll();
+
+  const handleDownloadPDF = (e, title, fileName, content) => {
+    e.preventDefault();
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text(title, 20, 20);
+    
+    // Add content
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    const splitText = doc.splitTextToSize(content, 170);
+    doc.text(splitText, 20, 40);
+    
+    doc.save(fileName);
+  };
 
   return (
     <Box
@@ -123,10 +142,11 @@ export const FooterSegment = () => {
           </Typography>
           
           <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-            {listLegalLinks?.map((link, index) => (
+            {listLegalLinks?.map(({ title, fileName, content }, index) => (
               <Link
                 key={index}
-                href="#"
+                component="button"
+                onClick={(e) => handleDownloadPDF(e, title, fileName, content)}
                 sx={{
                   color: '#fff',
                   textDecoration: 'none',
@@ -138,7 +158,7 @@ export const FooterSegment = () => {
                   },
                 }}
               >
-                {link}
+                {title}
               </Link>
             ))}
           </Stack>

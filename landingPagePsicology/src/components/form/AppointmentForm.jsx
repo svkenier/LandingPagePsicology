@@ -16,6 +16,7 @@ import {
 import { CompactField } from "./CompactField";
 import { CompactDateField } from "./CompactDateField";
 import { useDataForm } from "@/hooks/useDataForm";
+import { useEffect } from "react";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -53,8 +54,17 @@ export const AppointmentForm = () => {
       initialValues={formValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      enableReinitialize={true}
     >
-      {({ isSubmitting, errors, touched, values, handleChange }) => (
+      {({ isSubmitting, errors, touched, values, handleChange, setFieldValue }) => {
+        // Sync consultationType from context to Formik
+        useEffect(() => {
+          if (formValues.consultationType && formValues.consultationType !== values.consultationType) {
+            setFieldValue('consultationType', formValues.consultationType);
+          }
+        }, [formValues.consultationType, setFieldValue, values.consultationType]);
+
+        return (
         <Form>
           <Stack spacing={2.5}>
             <Box sx={{ display: "flex", gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
@@ -182,7 +192,8 @@ export const AppointmentForm = () => {
             </Button>
           </Stack>
         </Form>
-      )}
+        );
+      }}
     </Formik>
   );
 };

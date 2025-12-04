@@ -59,7 +59,7 @@ export const ShowServices = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={(e) => handleScroll(e, "Contacto")}
+            onClick={(e) => handleScroll(e, "Contacto", "Presencial")}
             sx={{ 
               flex: { xs: '1 1 100%', sm: '1 1 auto' },
               minWidth: { sm: 220 },
@@ -70,7 +70,7 @@ export const ShowServices = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={(e) => handleScroll(e, "Contacto")}
+            onClick={(e) => handleScroll(e, "Contacto", "Online")}
             sx={{ 
               flex: { xs: '1 1 100%', sm: '1 1 auto' },
               minWidth: { sm: 220 },

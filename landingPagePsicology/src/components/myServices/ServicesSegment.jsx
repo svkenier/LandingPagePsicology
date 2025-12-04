@@ -227,7 +227,7 @@ export const ServicesSegment = () => {
               <Button
                 variant="contained"
                 size="large"
-                onClick={(e) => handleScroll(e, "Contacto")}
+                onClick={(e) => handleScroll(e, "Contacto", "Presencial")}
                 sx={{
                   bgcolor: '#fff',
                   color: 'primary.main',
@@ -244,7 +244,7 @@ export const ServicesSegment = () => {
               <Button
                 variant="contained"
                 size="large"
-                onClick={(e) => handleScroll(e, "Contacto")}
+                onClick={(e) => handleScroll(e, "Contacto", "Online")}
                 sx={{
                   bgcolor: '#fff',
                   color: 'primary.main',

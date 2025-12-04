@@ -9,6 +9,7 @@ import { FormSegment } from "./components/form/FormSegment";
 import PropTypes from "prop-types";
 import { FooterSegment } from "./components/footer/footerSegment";
 import { theme } from "./styles/theme";
+import { FormProvider } from "./hooks/useDataForm";
 
 
 function App() {
@@ -21,18 +22,20 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{ backgroundColor: 'background.default', color: 'text.primary', minHeight: '100vh' }}>
-        <NavSegment handleActiveMenu={handleActiveMenu} activeMenu={activeMenu} />
-        <Container maxWidth="lg" sx={{ py: { xs: 2, sm: 3, md: 4 } }}>
-          <HeaderSegment />
-          <AboutUsSegment />
-          <SkillsSegment />
-          <ServicesSegment />
-          <FormSegment />
-        </Container>
-        <FooterSegment />
-      </Box>
+      <FormProvider>
+        <CssBaseline />
+        <Box sx={{ backgroundColor: 'background.default', color: 'text.primary', minHeight: '100vh' }}>
+          <NavSegment handleActiveMenu={handleActiveMenu} activeMenu={activeMenu} />
+          <Container maxWidth="lg" sx={{ py: { xs: 2, sm: 3, md: 4 } }}>
+            <HeaderSegment />
+            <AboutUsSegment />
+            <SkillsSegment />
+            <ServicesSegment />
+            <FormSegment />
+          </Container>
+          <FooterSegment />
+        </Box>
+      </FormProvider>
     </ThemeProvider>
   );
 }
